@@ -4,15 +4,37 @@ import g
 import re
 import uuid
 
-# @get("/login-temp")
-# @view("login-temp")
-# def _():
-#     # user_email = request.forms.get("user_email")
-#     user_session_id = request.get_cookie("session_id")
-#     if user_session_id not in g.SESSIONS:
-#         return redirect("/login")
-#     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
-#     return dict(user_email=user_email)
+
+
+@post("/api-create-tweet")
+def _():
+    # Validate
+    tweet_text = request.forms.get("tweet_text", "")
+    if len(tweet_text) < 1 or len(tweet_text) > 100:
+        response.status = 400
+        return "tweet_text invalid"
+    # Connect to the db
+    # query
+    tweet_id = str(uuid.uuid4())
+    tweet = {
+        "id": tweet_id,
+        "src": "6.jpg",
+        "user_first_name": "niren",
+        "user_last_name": "rawal",
+        "user_name": "xxxyyy",
+        "date": "Feb 20",
+        "text": tweet_text
+    }
+    g.TWEETS.append(tweet)
+    # respond
+    return tweet_id
+
+
+
+
+
+
+
 
 
 ############## ENCODE JWT ###############################

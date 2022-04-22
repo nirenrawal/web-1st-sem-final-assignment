@@ -72,7 +72,7 @@ async function sendTweet(){
         </p>            
         <p class="font-thin">
           aaa bbb
-        </p>            
+        </p>                
         <div class="pt-2">
           ${_one("input", form).value}
         </div>
@@ -95,17 +95,15 @@ async function sendTweet(){
 
 
 async function delete_tweet(tweet_id){
-  // _one(`#${tweet_id}`).remove()
-  
   // Connect to the api and delete it from the "database"
-  const connection = await fetch(`/api-delete-tweet${tweet_id}`, {
-    method : 'DELETE'
+  const connection = await fetch(`/api-delete-tweet/${tweet_id}`, {
+    method : "DELETE"
   })
-  if(!connection.ok){
-    alert("oops.... try again!!!")
+  if( ! connection.ok ){
+    alert("uppps... try again")
     return
   }
+
   document.querySelector(`[id='${tweet_id}']`).remove()
 }
-
 
