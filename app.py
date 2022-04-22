@@ -4,33 +4,34 @@ import g
 import re
 import uuid
 
-# @get("/login-temp")
-# @view("login-temp")
+@get("/login-temp")
+@view("login-temp")
+def _():
+    user_session_id = request.get_cookie("session_id")
+    if user_session_id not in g.SESSIONS:
+        return redirect("/")
+    user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
+    return dict(user_email=user_email)
 
 
 ############## ENCODE JWT ###############################
 encoded_jwt = jwt.encode({'data': g.USERS}, "JWTkeyTwitter", algorithm="HS256")
 
 ############## RENDERS TWEETS PAGE ###############################
-@get("/tweets")
-@view("tweets")
-def tweets():
+# @get("/tweets")
+# @view("tweets")
+# def tweets():
     # user_session_id = request.get_cookie("session_id")
     # if user_session_id not in g.SESSIONS:
     #     return redirect("/")
     # user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
-    return dict(user_email=user_email, tabs=g.TABS)
+    # return dict(user_email=user_email, tabs=g.TABS)
 
 ############## RENDERS LOGIN PAGE ###############################
 @get("/login")
-@view("login-temp")
+@view("index")
 def login():
-    def _():
-        user_session_id = request.get_cookie("session_id")
-        if user_session_id not in g.SESSIONS:
-            return redirect("/")
-    user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
-    return dict(user_email=user_email)
+    return
  
 
 ############## LOGIN POST ###############################
@@ -42,13 +43,15 @@ def login():
     if not re.match(g.REGEX_EMAIL, request.forms.get("user_email")):
         return redirect("/login?error=user_email")
 
+    user_email = request.forms.get("user_email")
+
     if not request.forms.get("user_password"):
         return redirect(f"/login?error=user_password&user_email={user_email}")
 
     if not re.match(g.REGEX_PASSWORD, request.forms.get("user_password")):
         return redirect("/login?error=user_password")
 
-    user_email = request.forms.get("user_email")
+    
     user_password = request.forms.get("user_password")
 
     for user in g.USERS:
@@ -57,8 +60,8 @@ def login():
             response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
             g.SESSIONS.append(user_session_id)
             response.set_cookie("session_id", user_session_id)
-            return redirect("/login-temp")
-    return redirect("/login-temp")
+            return redirect("/login")
+    return redirect("/login")
 
 ############## ERROR DISPLAY ###############################
 @error(404)
