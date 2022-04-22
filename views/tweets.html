@@ -33,11 +33,11 @@
             <i class="fa-brands fa-twitter fa-fw text-4xl text-blue1 pl-5"></i>
           </div>
           <div class="">
-            % for tab in g.TABS:
+            % for tab in tabs:
             <div class="mt-6">
               <a class="text-xl hover:bg-lighter rounded-full py-3 px-6" href="">
                 <i class="{{tab['icon']}}"></i>
-                <span class="ml-2 hidden md:inline">{{g.TABS['title']}}</span>
+                <span class="ml-2 hidden md:inline">{{tab['title']}}</span>
               </a>
             </div>
             % end
@@ -46,18 +46,22 @@
             Tweet
           </button>
         </div>
+       
         <div class="mt-auto">
           <div class="flex items-center gap-2 px-2 py-3 hover:bg-gray-200 cursor-pointer rounded-full">
             <img class="w-12 h-12 rounded-full flex-none" src="/images/3.jpg">
+            % for user in users:
             <div class="flex-1 overflow-ellipsis">
-              <p>Santiago Donoso</p>
-              <p class="font-thin">@santiagodonoso</p>
+              <p>{{user["user_first_name"]}} {{user["user_last_name"]}}</p>
+              <p class="font-thin">@{{user["user_name"]}}</p>
             </div>
+             % end  
             <button class="py-2 px-4 bg-white rounded-full">
               ...
             </button>
           </div>
-        </div>        
+        </div>  
+           
       </div>
     </div>
     % # end left
