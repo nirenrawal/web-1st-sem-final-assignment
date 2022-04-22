@@ -7,9 +7,10 @@ import uuid
 @get("/login-temp")
 @view("login-temp")
 def _():
+    # user_email = request.forms.get("user_email")
     user_session_id = request.get_cookie("session_id")
     if user_session_id not in g.SESSIONS:
-        return redirect("/")
+        return redirect("/login")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
     return dict(user_email=user_email)
 
@@ -60,8 +61,13 @@ def login():
             response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
             g.SESSIONS.append(user_session_id)
             response.set_cookie("session_id", user_session_id)
-            return redirect("/login")
-    return redirect("/login")
+            return redirect("/login-temp")
+    return redirect("/login-temp")
+
+
+
+
+
 
 ############## ERROR DISPLAY ###############################
 @error(404)
