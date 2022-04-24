@@ -21,14 +21,16 @@ REGEX_USERNAME = '^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){3,18}[a-zA-Z0-9]$'
 ##############################################################
 
 TABS = [
-    {"icon": "fas fa-home fa-fw", "title": "Home", "id": "home"},
-    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore"},
-    {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications"},
-    {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages"},
-    {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks"},
-    {"icon": "fas fa-clipboard-list fa-fw", "title": "Lists", "id": "lists"},
-    {"icon": "far fa-user fa-fw", "title": "Profile", "id": "profile"},
-    {"icon": "fas fa-ellipsis-h fa-fw", "title": "More", "id": "more"}
+    {"icon": "fas fa-home fa-fw", "title": "Home", "id": "home",  "href": "/home"},
+    {"icon": "fas fa-hashtag fa-fw", "title": "Explore", "id": "explore",  "href": "/explore"},
+    {"icon": "far fa-bell fa-fw", "title": "Notifications", "id": "notifications",  "href": "/notifications"},
+    {"icon": "far fa-envelope fa-fw", "title": "Messages", "id": "messages",  "href": "/messages"},
+    {"icon": "far fa-bookmark fa-fw", "title": "Bookmarks", "id": "bookmarks", "href": "/bookmarks"},
+    {"icon": "fas fa-clipboard-list fa-fw", "title": "Lists", "id": "lists",  "href": "/lists"},
+    {"icon": "far fa-user fa-fw", "title": "Profile", "id": "profile", "href": "/profile"},
+    {"icon": "fa-solid fa-arrow-right-from-bracket", "title": "Logout", "id": "logout", "href": "/logout"},
+    {"icon": "fas fa-ellipsis-h fa-fw", "title": "More", "id": "more",  "href": "/logout"}
+
 ]
 
 

@@ -35,7 +35,7 @@
           <div class="">
             % for tab in tabs:
             <div class="mt-6">
-              <a class="text-xl hover:bg-lighter rounded-full py-3 px-6" href="">
+              <a class="text-xl hover:bg-lighter rounded-full py-3 px-6" href="{{tab['href']}}">
                 <i class="{{tab['icon']}}"></i>
                 <span class="ml-2 hidden md:inline">{{tab['title']}}</span>
               </a>
@@ -59,9 +59,12 @@
             <button class="py-2 px-4 bg-white rounded-full">
               ...
             </button>
+            
           </div>
         </div>  
-           
+      
+     
+        
       </div>
     </div>
     % # end left

@@ -60,24 +60,28 @@ async function sendTweet(){
   if( ! connection.ok ){
     return
   }
-  const tweet_id = await connection.text() // tweet id will be here
+
+  
+  const tweetResponse = await connection.text() // tweet id will be here
+  const parsedTweet = JSON.parse(tweetResponse)
+  // console.log()
   // Success
   let tweet = `
-    <div id="${tweet_id}" class="p-4 border-t border-slate-200">
+    <div id="${parsedTweet.id}" class="p-4 border-t border-slate-200">
     <div class="flex">
       <img class="flex-none w-12 h-12 rounded-full" src="/images/1.jpg" alt="">
       <div class="w-full pl-4">
         <p class="font-bold">
-          @xxx
+          @${parsedTweet.user_name}
         </p>            
         <p class="font-thin">
-          aaa bbb
+          ${parsedTweet.user_first_name} ${parsedTweet.user_last_name}
         </p>                
         <div class="pt-2">
           ${_one("input", form).value}
         </div>
         <div class="flex gap-12 w-full mt-4 text-lg">
-            <i onclick="delete_tweet('${tweet_id}')" class="fas fa-trash ml-auto"></i>
+            <i onclick="delete_tweet('${parsedTweet.id}')" class="fas fa-trash ml-auto"></i>
             <i class="fa-solid fa-message"></i>
             <i class="fa-solid fa-heart"></i>
             <i class="fa-solid fa-retweet"></i>
