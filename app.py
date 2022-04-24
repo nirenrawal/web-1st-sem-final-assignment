@@ -1,136 +1,72 @@
 
-from bottle import default_app, delete, error, get, post, redirect, request, response, run,  request, static_file, view 
+from bottle import default_app, delete, error, get, post, put, redirect, response, run,  request, static_file, view 
 import jwt
 import g
 import re
 import uuid
+import json
 
-encoded_jwt = ""
+import logout_get
+import tweets_get
+import login_get
+import api_create_user_get
+import admin_get
 
-@post("/api-create-tweet")
-def _():
-    # Validate
-    tweet_text = request.forms.get("tweet_text", "")
-    if len(tweet_text) < 1 or len(tweet_text) > 100:
-        response.status = 400
-        return "tweet_text invalid"
-    # Connect to the db
-    # query
-    tweet_id = str(uuid.uuid4())
-    user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
+
+import api_create_tweet_post
+import login_post
+
+
+@post('/api_update_tweet')
+def update_tweet():
+    
+    data = json.load(request.body)
+    tweet_id = data["tweet_id"]
+    tweet_text = data["tweet_text"]
    
-    for user in g.USERS:
-        if user_email == user["user_email"]:
-            tweet = {
-                "id": tweet_id,
-                "src": "6.jpg",
-                "user_first_name": user["user_first_name"],
-                "user_last_name": user["user_last_name"],
-                "user_name": user["user_name"],
-                "date": "Feb 20",
-                "text": tweet_text
-            }
-            g.TWEETS.append(tweet)
-            # respond
-            return tweet
+    for tweet in g.TWEETS:
+        if tweet_id == tweet["id"]:
+            tweet["text"] = tweet_text
+            return "OK"
+    return "FALSE"
+    # allowed_keys = [ "tweet_text"]
+    # for key in request.forms.keys():
+    #   if not key in allowed_keys:
+    #     print(key)
+    #     return g._send(400, f"Forbidded key {key}")
 
 
+####################################################
+
+@delete("/api-delete-tweet/<tweet_id>")
+def _(tweet_id):
+    # print(g.TWEETS)
+    # for tweet in tweets:
+    #   if tweet_id == tweet["id"]:
+
+    for index, tweet in enumerate(g.TWEETS):
+        if tweet["id"] == tweet_id:
+            return "tweet deleted"
+    # print(g.TWEETS)
+    response.status = 204
+    return "no tweet found to delete"
 
 
+############## युजर मेटाउछ ###############################
+@delete("/delete-user/<user_id>")
+def delete_user(user_id):
+    print("*"*30)
+    print(g.USERS)
+    user_id = request.forms.get("user_id")
+    for index, user in enumerate(g.USERS):
+        if user["user_id"] == user_id:
+            g.USERS.pop(index)
+            return redirect("/users")
+    print("#"*30)        
+    print(g.USERS)
+    response.status = 204
+    return redirect("/users")
 
-
-############## RENDERS TWEETS PAGE ###############################
-@get("/tweets")
-@view("tweets")
-def tweets():
-    response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
-    user_session_id = request.get_cookie("session_id")
-    if user_session_id not in g.SESSIONS:
-        return redirect("/login")
-    user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
-    user_name = request.forms.get("user_name")
-    print(user_name)
-    return dict(user_email=user_email, user_name=user_name, tabs=g.TABS, tweets=g.TWEETS, trends=g.TRENDS, items=g.ITEMS, users=g.USERS)
-
-############## RENDERS LOGIN PAGE ###############################
-@get("/login")
-@view("index")
-def login():
-    return
- 
-#############################################
-@post("/api-create-user")
-def create_user():
-    if not re.match(g.REGEX_USERNAME, request.forms.get("user_name")):
-        response.status = 400
-        return "Username must contain 5 to 20 characters or numbers and only '.', '-' and '_' characters are allowed "
-
-    if not re.match(g.REGEX_EMAIL, request.forms.get("user_email")):
-        response.status = 400
-        return "Please insert a valid email"
-
-    if not re.match(g.REGEX_PASSWORD, request.forms.get("user_password")):
-        response.status = 400
-        return "Password must contain minimum eight characters, at least one letter and one number"
-    
-    user_id = str(uuid.uuid4())
-    user_first_name = request.forms.get("user_first_name")
-    user_last_name = request.forms.get("user_last_name")
-    user_email = request.forms.get("user_email")
-    user_name = request.forms.get("user_name")
-    user_password = request.forms.get("user_password")
-    user = {
-        "user_id": user_id,
-        "user_first_name": user_first_name,
-        "user_last_name": user_last_name,
-        "user_email": user_email,
-        "user_name": user_name,
-        "user_password": user_password
-    }
-    g.USERS.append(user)
-    encoded_jwt = jwt.encode(user, "secret", algorithm="HS256")
-    user_session_id = str(uuid.uuid4())
-    response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
-    g.SESSIONS.append(user_session_id)
-    response.set_cookie("session_id", user_session_id)
-    return redirect("/tweets")
-  #  return redirect (f"/?user_id={user_id}&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&user_name={user_name}&user_password={user_password}")
-
-############## LOGIN POST ###############################
-@post("/login")
-def login():
-    if not request.forms.get("user_email"):
-        return redirect("/login?error=user_email")
-
-    if not re.match(g.REGEX_EMAIL, request.forms.get("user_email")):
-        return redirect("/login?error=user_email")
-
-    user_email = request.forms.get("user_email")
-
-    if not request.forms.get("user_password"):
-        return redirect(f"/login?error=user_password&user_email={user_email}")
-
-    if not re.match(g.REGEX_PASSWORD, request.forms.get("user_password")):
-        return redirect("/login?error=user_password")
-
-    
-    user_password = request.forms.get("user_password")
-
-    for user in g.USERS:
-        if user_email == user["user_email"] and user_password == user["user_password"]:
-            user_session_id = str(uuid.uuid4())
-            response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
-            g.SESSIONS.append(user_session_id)
-            response.set_cookie("session_id", user_session_id)
-            return redirect("/tweets")
-    return redirect("/tweets")
-
-############## LOGOUT ###############################
-@get("/logout")
-def logout():
-    user_session_id = request.get_cookie("session_id")
-    g.SESSIONS.remove(user_session_id)
-    return redirect("/login")
 
 
 
@@ -153,44 +89,12 @@ def index():
 def get_all_users():
     return dict(users=g.USERS)
 
-############## युजर मेटाउछ ###############################
-@post("/delete-user")
-def delete_user():
-    print("*"*30)
-    print(g.USERS)
-    user_id = request.forms.get("user_id")
-    for index, user in enumerate(g.USERS):
-        if user["user_id"] == user_id:
-            g.USERS.pop(index)
-            return redirect("/users")
-    print("#"*30)        
-    print(g.USERS)
-    response.status = 204
-    return redirect("/users")
-
-
-############## RENDERS ADMIN PAGE###############################
-@get("/admin")
-@view("admin")
-def admin():
-    user_id = request.params.get("user_id")
-    user_first_name = request.params.get("user_first_name")
-    user_last_name = request.params.get("user_last_name")
-    user_email = request.params.get("user_email")
-    user_name = request.params.get("user_name")
-    user_password = request.params.get("user_password")
-    return dict(user_first_name=user_first_name, user_last_name=user_last_name, user_id=user_id, user_email=user_email, user_name=user_name, user_password=user_password)
 
 #############################################
 @get("/api-create-user")
 @view("users")
 def get_users():
     return
-
-
-
-
-
 
 #############################################
 @get("/app.css")

@@ -6,12 +6,9 @@ window.addEventListener(
         const overlayLogin = document.querySelector("#overlay-login")
         const loginBtn = document.querySelector("#login-btn")
         const closeBtnLogin = document.querySelector("#close-btn-login")
-        const notUser = document.querySelector("#notUser")
+      
 
-        notUser.addEventListener('click', function(){
-          overlayLogin.classList.remove('hidden')
-          overlay.classList.add('flex')
-        })
+      
 
         signupBtn.addEventListener('click', function() {
             overlay.classList.remove('hidden')
@@ -55,13 +52,6 @@ document.addEventListener("DOMContentLoaded", function (){
   }
 })
 
-//LIKES
-function likeTweet() {
-  const element = document.getElementById("likes");
-  value = parseInt(element.getAttribute("value"), 10)+1;
-  element.setAttribute("value", value)
-  element.innerHTML = value;
-}
 
 //############################################################//
 
@@ -109,38 +99,39 @@ async function sendTweet(){
         <p class="font-thin">
           ${parsedTweet.user_first_name} ${parsedTweet.user_last_name}
         </p>                
-        <div class="pt-2">
+        <div class="pt-2 tweet-text">
           ${_one("input", form).value}
         </div>
-        <div class="flex gap-12 w-full mt-4 text-lg">
-            <i onclick="delete_tweet('${parsedTweet.id}')" class="fas fa-trash ml-auto"></i>
-            <i class="fa-solid fa-message"></i>
-            <i class="fa-solid fa-heart"></i>
-            <i class="fa-solid fa-retweet"></i>
-            <i class="fa-solid fa-share-nodes"></i>
-        </div>
+        
         <div class="flex gap-12 mt-4 text-lg text-gray-400 justify-between">
-
+        <div class="hover:text-red-300 cursor-pointer">
+        <i onclick="delete_tweet('${parsedTweet.id}')" class="fas fa-trash ml-auto"></i>
+                </div>
                 <div class="hover:text-red-300 cursor-pointer">
                   <i class="fa-solid fa-message ml-auto"></i>
                 </div>
 
                 <div class="hover:text-blue1">
-                  <button type="button" onclick="likeTweet()">
+                  <button type="button" onclick="likeTweet('${parsedTweet.id}')">
                     <i class="fa-solid fa-heart"></i>
                   </button>
-                  <span class="text-sm" id="likes" value="0"></span>
+                  <span class="text-sm" id="likes${parsedTweet.id}" value="0"></span>
                 </div>
 
                 <div>
                   <i class="fa-solid fa-retweet"></i>
                 </div>
 
-                <div>
-                  <i class="fa-solid fa-share-nodes"></i>
+                <div class="hover:text-blue1">
+                  <button type="button" onclick="updateTweet('${parsedTweet.id}', '${parsedTweet.text}')">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                 
                 </div>
 
-              </div>
+               
+
+           </div>
       </div>
     </div>
   </div> 
@@ -163,5 +154,41 @@ async function delete_tweet(tweet_id){
   }
 
   document.querySelector(`[id='${tweet_id}']`).remove()
+}
+
+//LIKES
+function likeTweet(tweet_id) {
+    const element = document.getElementById("likes" + tweet_id);
+    value = parseInt(element.getAttribute("value"), 10)+1;
+    element.setAttribute("value", value)
+    element.innerHTML = value;
+  
+}
+
+
+async function updateTweet(tweet_id, tweet_text) {
+
+  let response = prompt("edit", tweet_text)
+
+  if(response){
+  const form = {
+    tweet_id,
+    tweet_text : response
+  }
+ 
+  const connection = await fetch(`/api_update_tweet`, {
+    method : "POST",
+    body : JSON.stringify(form)
+  })
+
+  if(!connection.ok){
+    return
+  }
+
+  const element = document.getElementById(tweet_id)
+  const text = element.querySelector('.tweet-text')
+  text.textContent = response
+  
+}
 }
 

@@ -45,7 +45,7 @@ TRENDS = [
 
 TWEETS = [
     {"id": "1", "src": "6.jpg", "user_first_name": "Barack", "user_last_name": "Obama", "user_name": "barackobama", "date": "Feb 20",
-     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg"},
+     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg", "like": "0"},
     {"id": "2", "src": "2.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "joebiden", "date": "Mar 3",
      "text": "Richard Hunt is one of the greatest artists Chicago has ever produced, and I couldn’t be prouder that his “Book Bird” sculpture will live outside of the newest @ChiPubLibbranch at the Obama Presidential Center. I hope it inspires visitors for years to come."},
     {"id": "3", "src": "3.jpg", "user_first_name": "Joe Biden", "user_last_name": "Biden", "user_name": "elonmusk",
