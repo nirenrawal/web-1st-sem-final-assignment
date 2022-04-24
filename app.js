@@ -6,6 +6,12 @@ window.addEventListener(
         const overlayLogin = document.querySelector("#overlay-login")
         const loginBtn = document.querySelector("#login-btn")
         const closeBtnLogin = document.querySelector("#close-btn-login")
+        const notUser = document.querySelector("#notUser")
+
+        notUser.addEventListener('click', function(){
+          overlayLogin.classList.remove('hidden')
+          overlay.classList.add('flex')
+        })
 
         signupBtn.addEventListener('click', function() {
             overlay.classList.remove('hidden')
@@ -29,7 +35,33 @@ window.addEventListener(
 
     }
 )
+//############################################################//
+//IMAGE
+document.querySelector("#user_image").addEventListener("change", function(){
+  const reader = new FileReader();
+  reader.addEventListener("load", function(){
+    localStorage.setItem("my-image", reader.result)
+  })
+  reader.readAsDataURL(this.files[0])
+})
 
+document.addEventListener("DOMContentLoaded", function (){
+  const staticImage = "/images/twitter-logo.png"
+  const userImageUrl = localStorage.getItem("my-image");
+  if(userImageUrl) {
+    document.querySelector("#image").setAttribute("src", userImageUrl);
+  }else {
+    return document.querySelector("#image").setAttribute("src", staticImage)
+  }
+})
+
+//LIKES
+function likeTweet() {
+  const element = document.getElementById("likes");
+  value = parseInt(element.getAttribute("value"), 10)+1;
+  element.setAttribute("value", value)
+  element.innerHTML = value;
+}
 
 //############################################################//
 
@@ -87,6 +119,28 @@ async function sendTweet(){
             <i class="fa-solid fa-retweet"></i>
             <i class="fa-solid fa-share-nodes"></i>
         </div>
+        <div class="flex gap-12 mt-4 text-lg text-gray-400 justify-between">
+
+                <div class="hover:text-red-300 cursor-pointer">
+                  <i class="fa-solid fa-message ml-auto"></i>
+                </div>
+
+                <div class="hover:text-blue1">
+                  <button type="button" onclick="likeTweet()">
+                    <i class="fa-solid fa-heart"></i>
+                  </button>
+                  <span class="text-sm" id="likes" value="0"></span>
+                </div>
+
+                <div>
+                  <i class="fa-solid fa-retweet"></i>
+                </div>
+
+                <div>
+                  <i class="fa-solid fa-share-nodes"></i>
+                </div>
+
+              </div>
       </div>
     </div>
   </div> 
