@@ -21,7 +21,7 @@ def _():
         "src": "6.jpg",
         "user_first_name": "niren",
         "user_last_name": "rawal",
-        "user_name": "xxxyyy",
+        "user_name": "nirenrawal",
         "date": "Feb 20",
         "text": tweet_text
     }
@@ -49,6 +49,7 @@ def tweets():
         return redirect("/login")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
     user_name = request.forms.get("user_name")
+    print(user_name)
     return dict(user_email=user_email, user_name=user_name, tabs=g.TABS, tweets=g.TWEETS, trends=g.TRENDS, items=g.ITEMS, users=g.USERS)
 
 ############## RENDERS LOGIN PAGE ###############################
