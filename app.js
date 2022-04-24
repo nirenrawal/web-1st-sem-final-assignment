@@ -166,9 +166,13 @@ function likeTweet(tweet_id) {
 }
 
 
-async function updateTweet(tweet_id, tweet_text) {
+async function updateTweet(tweet_id) {
 
-  let response = prompt("edit", tweet_text)
+  const element = document.getElementById(tweet_id)
+  const text = element.querySelector('.tweet-text')
+
+
+  let response = prompt("edit", text.innerText)
 
   if(response){
   const form = {
@@ -185,8 +189,7 @@ async function updateTweet(tweet_id, tweet_text) {
     return
   }
 
-  const element = document.getElementById(tweet_id)
-  const text = element.querySelector('.tweet-text')
+
   text.textContent = response
   
 }
