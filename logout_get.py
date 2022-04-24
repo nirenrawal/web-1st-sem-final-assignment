@@ -1,4 +1,5 @@
 from bottle import get, redirect, request
+import g
 
 
 
