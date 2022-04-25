@@ -172,7 +172,7 @@ async function updateTweet(tweet_id) {
   const text = element.querySelector('.tweet-text')
 
 
-  let response = prompt("edit", text.innerText)
+  let response = prompt("Update Tweet", text.innerText)
 
   if(response){
   const form = {

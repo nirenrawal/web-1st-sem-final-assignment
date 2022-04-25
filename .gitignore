@@ -4,7 +4,7 @@ lib
 .gitignore
 pyvenv.cfg
 __pycache__
-tailwindcss
+# tailwindcss
 Scripts
 copied.txt
 app.css
