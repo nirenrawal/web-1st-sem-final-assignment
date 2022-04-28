@@ -3,6 +3,7 @@ import jwt
 import uuid
 import g
 import re
+import smtplib
 
 
 
@@ -41,5 +42,19 @@ def create_user():
     response.set_cookie("user_email", user_email, secret=g.COOKIE_SECRET)
     g.SESSIONS.append(user_session_id)
     response.set_cookie("session_id", user_session_id)
+
+    message ="You are now signed up with twitter.Please go and login"
+    server= smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login("harimadanbahadur@gmail.com", "Twittercc20")
+    server.sendmail("harimadanbahadur@gmail.com",user_email, message)
     return redirect("/tweets")
+
+
+  #  return redirect (f"/?user_id={user_id}&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&user_name={user_name}&user_password={user_password}")
+
+  #trying to send email 
+## so here first you print the msg what what you like to see in google .. then you setup your server with smtplib(which is a python built in lib and the port 587) then you provide the server login  email and password and also to whom do ypu want to send your email. 
+
+
   #  return redirect (f"/?user_id={user_id}&user_first_name={user_first_name}&user_last_name={user_last_name}&user_email={user_email}&user_name={user_name}&user_password={user_password}")
