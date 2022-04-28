@@ -5,7 +5,7 @@ from bottle import default_app, get, run, static_file
 import logout_get
 import tweets_get
 import login_get
-import api_create_user_get
+import api_create_user_post
 import admin_get
 import users_get
 import error_get
