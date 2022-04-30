@@ -7,8 +7,8 @@ import g
 @view("tweets")
 def tweets():
     response.set_header("Cache-Control", "no-cache, no-store, must-revalidate")
-    user_session_id = request.get_cookie("session_id")
-    if user_session_id not in g.SESSIONS:
+    session_id = request.get_cookie("session_id")
+    if session_id not in g.SESSIONS:
         return redirect("/login")
     user_email = request.get_cookie("user_email", secret=g.COOKIE_SECRET )
     user_name = request.forms.get("user_name")

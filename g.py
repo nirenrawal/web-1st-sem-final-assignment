@@ -1,5 +1,17 @@
 
-USERS = []
+USERS = {
+    "a5ea9d0c-1295-4a1e-8184-e22e50ec1914": {
+        "user_id": "a5ea9d0c-1295-4a1e-8184-e22e50ec1914",
+        "user_first_name": "Aicha",
+        "user_last_name": "Haidara",
+        "user_name": "AichaHaidara",
+        "user_email": "a@a.com", 
+        "user_password": "123",
+        "user_profile_picture": "aicha.jpeg",
+        "user_signup_date": "January 2014",
+        "user_cover_image": "landscape2.jpg"
+    }
+}
 ##############################################################
 
 SESSIONS = []

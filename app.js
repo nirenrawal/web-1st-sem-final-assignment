@@ -34,23 +34,23 @@ window.addEventListener(
 )
 //############################################################//
 //IMAGE
-document.querySelector("#user_image").addEventListener("change", function(){
-  const reader = new FileReader();
-  reader.addEventListener("load", function(){
-    localStorage.setItem("my-image", reader.result)
-  })
-  reader.readAsDataURL(this.files[0])
-})
+// document.querySelector("#user_image").addEventListener("change", function(){
+//   const reader = new FileReader();
+//   reader.addEventListener("load", function(){
+//     localStorage.setItem("my-image", reader.result)
+//   })
+//   reader.readAsDataURL(this.files[0])
+// })
 
-document.addEventListener("DOMContentLoaded", function (){
-  const staticImage = "/images/twitter-logo.png"
-  const userImageUrl = localStorage.getItem("my-image");
-  if(userImageUrl) {
-    document.querySelector("#image").setAttribute("src", userImageUrl);
-  }else {
-    return document.querySelector("#image").setAttribute("src", staticImage)
-  }
-})
+// document.addEventListener("DOMContentLoaded", function (){
+//   const staticImage = "/images/twitter-logo.png"
+//   const userImageUrl = localStorage.getItem("my-image");
+//   if(userImageUrl) {
+//     document.querySelector("#image").setAttribute("src", userImageUrl);
+//   }else {
+//     return document.querySelector("#image").setAttribute("src", staticImage)
+//   }
+// })
 
 
 //############################################################//
