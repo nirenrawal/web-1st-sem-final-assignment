@@ -43,11 +43,11 @@ def create_user():
     g.SESSIONS.append(user_session_id)
     response.set_cookie("session_id", user_session_id)
 
-    message ="You are now signed up with twitter.Please go and login"
-    server= smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login("harimadanbahadur@gmail.com", "Twittercc20")
-    server.sendmail("harimadanbahadur@gmail.com",user_email, message)
+    # message ="You are now signed up with twitter.Please go and login"
+    # server= smtplib.SMTP("smtp.gmail.com", 587)
+    # server.starttls()
+    # server.login("harimadanbahadur@gmail.com", "Twittercc20")
+    # server.sendmail("harimadanbahadur@gmail.com",user_email, message)
     return redirect("/tweets")
 
 

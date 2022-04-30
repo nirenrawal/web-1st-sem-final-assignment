@@ -2,23 +2,23 @@
 from bottle import default_app, get, run, static_file
 
 
-import logout_get
-import tweets_get
-import login_get
-import api_create_user_post
-import admin_get
-import users_get
-import error_get
-import index_get
-import create_users_get
+import LOGIN.logout_get as logout_get
+import Tweets.get_tweets as get_tweets
+import LOGIN.login_get as login_get
+import Users.create_user as create_user
+import Routes.admin_get as admin_get
+import Users.get_users as get_users
+import Routes.error_get as error_get
+import Routes.index_get as index_get
+import Users.create_user as create_user
 
 
-import api_create_tweet_post
-import login_post
-import update_tweet_post
+import Tweets.create_tweet as create_tweet
+import LOGIN.login_post as login_post
+import Tweets.update_tweet as update_tweet
 
-import user_delete
-import tweet_delete
+import Users.delete_user as delete_user
+import Tweets.delete_tweet as delete_tweet
 
 
 #############################################
