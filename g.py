@@ -35,43 +35,28 @@ TABS = [
 
 
 TRENDS = [
-    {"category": "Music", "title": "We Won", "tweets_counter": "135K"},
-    {"category": "Pop", "title": "Blue Ivy", "tweets_counter": "40k"},
-    {"category": "Trending in US", "title": "Denim Day", "tweets_counter": "40k"},
-    {"category": "Ukraine", "title": "Ukraine", "tweets_counter": "20k"},
-    {"category": "Russia", "title": "Russia", "tweets_counter": "10k"},
+    {"category": "Trending in Denmark", "title": "NFTs", "tweets_counter": "985K"},
+    {"category": "Politics", "title": "Russia", "tweets_counter": "40k"},
+    {"category": "Ukraine", "title": "Ukraine", "tweets_counter": "50k"},
+    {"category": "Music", "title": "Rock", "tweets_counter": "60k"},
+    {"category": "News", "title": "Afganistan", "tweets_counter": "844k"},
 ]
 
 
 TWEETS = [
-    {"id": "1", "src": "6.jpg", "user_first_name": "Barack", "user_last_name": "Obama", "user_name": "barackobama", "date": "Feb 20",
-     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg", "like": "0"},
-    {"id": "2", "src": "2.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "joebiden", "date": "Mar 3",
-     "text": "Richard Hunt is one of the greatest artists Chicago has ever produced, and I couldn’t be prouder that his “Book Bird” sculpture will live outside of the newest @ChiPubLibbranch at the Obama Presidential Center. I hope it inspires visitors for years to come."},
-    {"id": "3", "src": "3.jpg", "user_first_name": "Joe Biden", "user_last_name": "Biden", "user_name": "elonmusk",
-     "date": "Mar 7", "text": "Last year has been the best year for manufacturing jobs and trucking jobs since 1994."},
-    {"id": "4", "src": "6.jpg", "user_first_name": "Barack", "user_last_name": "Obama", "user_name": "barackobama", "date": "Feb 20",
-     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg"},
-    {"id": "5", "src": "2.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "joebiden", "date": "Mar 3",
-     "text": "Richard Hunt is one of the greatest artists Chicago has ever produced, and I couldn’t be prouder that his “Book Bird” sculpture will live outside of the newest @ChiPubLibbranch at the Obama Presidential Center. I hope it inspires visitors for years to come."},
-    {"id": "6", "src": "3.jpg", "user_first_name": "Joe Biden", "user_last_name": "Biden", "user_name": "elonmusk",
-     "date": "Mar 7", "text": "Last year has been the best year for manufacturing jobs and trucking jobs since 1994."},
-    {"id": "7", "src": "6.jpg", "user_first_name": "Barack", "user_last_name": "Obama", "user_name": "barackobama", "date": "Feb 20",
-     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg"},
-    {"id": "8", "src": "2.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "joebiden", "date": "Mar 3",
-     "text": "Richard Hunt is one of the greatest artists Chicago has ever produced, and I couldn’t be prouder that his “Book Bird” sculpture will live outside of the newest @ChiPubLibbranch at the Obama Presidential Center. I hope it inspires visitors for years to come."},
-    {"id": "9", "src": "3.jpg", "user_first_name": "Joe Biden", "user_last_name": "Biden", "user_name": "elonmusk",
-     "date": "Mar 7", "text": "Last year has been the best year for manufacturing jobs and trucking jobs since 1994."},
-    {"id": "10", "src": "6.jpg", "user_first_name": "Barack", "user_last_name": "Obama", "user_name": "barackobama", "date": "Feb 20",
-     "text": "The Ukrainian people need our help. If you’re looking for a way to make a difference, here are some organizations doing important work.", "image": "1.jpg"},
-    {"id": "11", "src": "2.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "joebiden", "date": "Mar 3",
-     "text": "Richard Hunt is one of the greatest artists Chicago has ever produced, and I couldn’t be prouder that his “Book Bird” sculpture will live outside of the newest @ChiPubLibbranch at the Obama Presidential Center. I hope it inspires visitors for years to come."},
-    {"id": "12", "src": "3.jpg", "user_first_name": "Joe Biden", "user_last_name": "Biden", "user_name": "elonmusk",
-     "date": "Mar 7", "text": "Last year has been the best year for manufacturing jobs and trucking jobs since 1994."},
+    {"id": "1", "src": "3.jpg", "user_first_name": "Elon", "user_last_name": "Musk", "user_name": "elonmusk", "date": "April 25",
+     "text": "Since I’ve been asked a lot.Buy stock in several companies that make products & services that *you* believe in.Only sell if you think their products & services are trending worse. Don’t panic when the market does.This will serve you well in the long-term.",  "like": "0"},
+    {"id": "2", "src": "6.jpg", "user_first_name": "Barak", "user_last_name": "Obama", "user_name": "barakobama", "date": " April 23",
+     "text": "When it comes to climate change, time really is running out. Earth Day is a reminder that if we pledge to do our part and then follow through on those commitments, we can help preserve and protect our planet for future generations."
+    },
+    {"id": "3", "src": "spaceX.jpeg", "user_first_name": "Space", "user_last_name": "X", "user_name": "spaceX",
+     "date": "April 30", "text": "Second burn of the Merlin Vacuum engine complete; <15 minutes until Starlink satellites deploy", "image": "spaceX.jpeg"},
+    {"id": "4", "src": "bbc.png", "user_first_name": "BBC", "user_last_name": "NEWS", "user_name": "BBCWORLD", "date": "May 1",
+     "text": "A very happy labors to all the working people around the world", "image": "labors day.jpeg"},
 ]
 
 ITEMS = [
-    {"img": "bbc.png", "title": "BBC News", "user_name": "bbcworld"},
-    {"img": "biden.jpg", "title": "Joe Biden", "user_name": "joebiden"},
-    {"img": "harris.jpg", "title": "Vice President", "user_name": "vp"},
+    {"img": "barca.png", "title": "FC barcelona", "user_name": "FCBarcelona"},
+    {"img": "bbc.png", "title": "BBC News world", "user_name": "BBCnewswrold"},
+    {"img": "madrid.jpeg", "title": "RealMadrid", "user_name": "FCRealMadrid"},
 ]
