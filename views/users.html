@@ -28,20 +28,12 @@
             There are no users on the list!!
         </div>
         % end
-<<<<<<< HEAD
         <!-- <div id="users"> -->
             % for user in users:
             <tbody {{user['user_id']}} >
                
                 <!-- <div class="user"> -->
                     <!-- <form action="/delete-user/{{user['user_id']}}" method="delete"> -->
-=======
-        <div id="users">
-            <tbody>
-                % for user in users:
-                <div class="user">
-                    <form action="/delete-user/{{user['user_id']}}">
->>>>>>> 099ef932a5e17c5faf4965e06b64ff13e2a0db0f
                         <tr>
                             <td class="py-2 px-4 border border-slate-300">{{user["user_id"]}}</td>
                             <td class="py-2 px-4 border border-slate-300">{{user["user_first_name"]}}</td>
