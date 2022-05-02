@@ -1,1 +1,11 @@
 __pycache__
+tailwindcss
+.gitignore
+env
+bin
+include
+lib
+LOGIN/__pycache__
+Routes/__pycache__
+Tweets/__pycache__
+Users/__pycache__

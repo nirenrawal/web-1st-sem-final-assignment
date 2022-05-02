@@ -32,7 +32,7 @@
             <tbody>
                 % for user in users:
                 <div class="user">
-                    <form action="/delete-user/{{user['user_id']}}" method="delete">
+                    <form action="/delete-user/{{user['user_id']}}">
                         <tr>
                             <td class="py-2 px-4 border border-slate-300">{{user["user_id"]}}</td>
                             <td class="py-2 px-4 border border-slate-300">{{user["user_first_name"]}}</td>
