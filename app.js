@@ -156,6 +156,20 @@ async function delete_tweet(tweet_id){
   document.querySelector(`[id='${tweet_id}']`).remove()
 }
 
+async function delete_user(user_id){
+  // Connect to the api and delete it from the "database"
+  const connection = await fetch(`/delete-user/${user_id}`, {
+    method : "DELETE"
+  })
+  if( ! connection.ok ){
+    alert("uppps... try again")
+    return
+  }
+
+  document.querySelector(`[id='${user_id}']`).remove()
+}
+
+
 //LIKES
 function likeTweet(tweet_id) {
     const element = document.getElementById("likes" + tweet_id);
