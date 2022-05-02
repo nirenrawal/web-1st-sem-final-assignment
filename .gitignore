@@ -2,7 +2,16 @@ __pycache__
 tailwindcss
 .gitignore
 env
+<<<<<<< HEAD
 Tweets/__pycache__
 LOGIN/__pycache__
 Routes/__pycache__
+=======
+bin
+include
+lib
+LOGIN/__pycache__
+Routes/__pycache__
+Tweets/__pycache__
+>>>>>>> 099ef932a5e17c5faf4965e06b64ff13e2a0db0f
 Users/__pycache__
